@@ -1,8 +1,0 @@
-API_KEY: 505518dcc98644f3a1db58caad756250.gqmz7KqgySG2UguA
-API_URL: https://open.bigmodel.cn/api/paas/v4/
-BASE_URL: https://open.bigmodel.cn/api/llm-application/open/v2
-variables_URL: https://open.bigmodel.cn/api/llm-application/open/v2/application
-app_id:
-  智能对话: 1970012754408529920
-  合同审查: 1977651514218536960
-  合同生成: 1972115220834947072
