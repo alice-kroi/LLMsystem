@@ -100,7 +100,7 @@ def test_llm_map():
                     sig = inspect.signature(rag_node)
                     if 'rag_instance' in sig.parameters:
                         rag_node_func = lambda state: rag_node(state, rag_instance=rag_instance)
-                    else:
+                    else:#直接将该函数作为node
                         rag_node_func = rag_node
             
             logger.info("创建RAG节点结果: %s", "成功" if rag_node_func is not None else "失败")
@@ -115,7 +115,7 @@ def test_llm_map():
         # 定义一些简单的函数作为节点
         def start_node(state):
             logger.info("执行start_node")
-            return {"step": "start", "input": state.get("input", ""), "prompt": state.get("prompt", "")}
+            return {"step": "start", "input": state.get("input", ""), "prompt": state.get("prompt", ""),"query": state.get("query", "")}
         
         def end_node(state):
             logger.info("执行end_node")
