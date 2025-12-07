@@ -5,7 +5,7 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-def load_config_to_env(config_path=None, return_dict=False):
+def load_config_to_env(config_path="e:\GitHub\config.yaml", return_dict=False):
     """
     读取YAML配置文件并设置为环境变量
     

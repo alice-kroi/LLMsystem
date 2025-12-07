@@ -35,7 +35,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 logger = logging.getLogger(__name__)
 
 class Agent:
-    def __init__(self, config_path="E:\GitHub\config.yaml", model_type="glm"):
+    def __init__(self, config_path="E:\GitHub\config.yaml", model_type="doubao"):
         """
         初始化Agent类
         
@@ -89,7 +89,7 @@ class Agent:
         # 用于存储不同conversation_id对应的memory实例的字典
         self.memories: Dict[str, ConversationBufferMemory] = {}
     
-    def create_llm(self, model_name: str = "glm-4", provider: str = "zhipu", **kwargs) -> bool:
+    def create_llm(self, model_name: str = "doubao-seed-1-6-251015", provider: str = "doubao", **kwargs) -> bool:
         """
         创建LLM实例并保存到llm属性
         
@@ -120,22 +120,12 @@ class Agent:
             
             elif provider == "doubao":
                 # 创建通用OpenAI兼容接口的LLM实例
-                # 从kwargs或配置中获取API密钥和基础URL
-                api_key = self.api_key,
-                base_url = self.api_url,
-                
                 # 基本参数
                 llm_params = {
                     'model': model_name,
                     'openai_api_key': self.api_key,
                     'openai_api_base': self.api_url,
                 }
-                
-                # 添加可选参数
-                if api_key:
-                    llm_params['api_key'] = api_key
-                if base_url:
-                    llm_params['base_url'] = base_url
                 
                 # 添加其他传入的参数
                 llm_params.update(kwargs)
