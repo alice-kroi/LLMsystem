@@ -13,7 +13,7 @@ async def test_websocket():
             message = {
                 "user_id": "test123",
                 "username": "测试用户",
-                "content": "你好，测试一下WebSocket功能"
+                "content": "所以，我之前说了什么，能复述一遍吗？"
             }
             
             await websocket.send(json.dumps(message))

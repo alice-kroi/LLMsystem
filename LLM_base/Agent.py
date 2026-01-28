@@ -35,7 +35,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 logger = logging.getLogger(__name__)
 
 class Agent:
-    def __init__(self, config_path="E:\GitHub\config.yaml", model_type="doubao"):
+    def __init__(self, config_path="E:\\GitHub\\config.yaml", model_type="doubao"):
         """
         初始化Agent类
         
@@ -45,30 +45,29 @@ class Agent:
         """
         # 利用config_load函数加载配置
         self.config = load_config_to_env(config_path=config_path, return_dict=True)
-        
         # 根据model_type选择不同的API配置
         if model_type == "doubao":
             if self.config:
                 logger.info("配置文件加载成功，使用豆包API配置")
                 # 从配置中提取豆包的API_KEY和API_URL
-                self.api_key = self.config.get('Doubao_API_KEY', 'cf1d0e35-d99b-4189-8c69-92a175619833')
-                self.api_url = self.config.get('Doubao_API_URL', 'https://ark.cn-beijing.volces.com/api/v3')
+                self.api_key = os.getenv("Doubao_API_KEY")
+                self.api_url = os.getenv("Doubao_API_URL")
             else:
                 logger.warning("配置文件加载失败或为空，使用默认豆包API配置")
                 # 使用豆包默认值
-                self.api_key = 'cf1d0e35-d99b-4189-8c69-92a175619833'
-                self.api_url = 'https://ark.cn-beijing.volces.com/api/v3'
+                self.api_key = ""
+                self.api_url = ''
         else:  # glm或其他情况，使用智谱AI的配置
             if self.config:
                 logger.info("配置文件加载成功，使用智谱AI API配置")
                 # 从配置中提取API_KEY和API_URL
-                self.api_key = self.config.get('API_KEY', '505518dcc98644f3a1db58caad756250.gqmz7KqgySG2UguA')
-                self.api_url = self.config.get('API_URL', 'https://open.bigmodel.cn/api/paas/v4/')
+                self.api_key = self.config.get('API_KEY')
+                self.api_url = self.config.get('API_URL')
             else:
                 logger.warning("配置文件加载失败或为空，使用默认智谱AI API配置")
                 # 使用默认值
-                self.api_key = '505518dcc98644f3a1db58caad756250.gqmz7KqgySG2UguA'
-                self.api_url = 'https://open.bigmodel.cn/api/paas/v4/'
+                self.api_key = ""
+                self.api_url = ""
         
 
         # 保存model_type供后续使用
